@@ -1,14 +1,17 @@
-variable "docker-image" {
-    description = "Docker image name"
-    default = "hello-world:latest"
+variable "docker_image" {
+  description = "Docker image name"
+  type        = string
+  default     = "hello-world:latest"
 }
 
 variable "container_name" {
-    description = "Name of the Docker container"
-    default = "hello-world-container"
+  description = "Name of the Docker container"
+  type        = string
+  default     = "hello-world-container"
 }
 
-variable "container_name" {
-    description = "Port to expose for the container"
-    default = "8081"
+variable "container_port" {
+  description = "Port to expose for the container"
+  type        = number
+  default     = 8081
 }

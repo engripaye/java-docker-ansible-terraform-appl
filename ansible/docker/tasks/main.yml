@@ -1,0 +1,20 @@
+---
+- name: Configure local Docker and deploy Java app
+  hosts: localhost
+  become: yes
+  collections:
+    - community.docker
+  tasks:
+    - name: Pull hello-world Docker image
+      community.docker.docker_image:
+        name: hello-world:latest
+        source: pull
+
+    - name: Run hello-world Docker container
+      community.docker.docker_container:
+        name: hello-world-container-ansible
+        image: hello-world:latest
+        state: started
+        restart_policy: always
+        published_ports:
+          - "8081:8081"
