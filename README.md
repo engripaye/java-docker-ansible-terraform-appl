@@ -1,29 +1,27 @@
-# JAVA DOCKER ANSIBLE APPLICATION 
+# JAVA DOCKER ANSIBLE TERRAFORM APPLICATION 
 
-a local project that integrates Ansible, Terraform, Docker, and a Java application on your Windows machine. The project will use Terraform to manage a local resource (a Docker container), Ansible to configure Docker and deploy the Java application, and Docker to run the Java application in a container. I’ll provide detailed, beginner-friendly explanations for each step, assuming you’re new to these tools. The goal is to deploy a simple Java “Hello World” web application running in a Docker container on your local machine.
+A simple project demonstrating the integration of Ansible, Terraform, Docker, and Java on a local Windows machine.
 
-Project Overview
-•  Objective:
-Deploy a simple Java Spring Boot application that serves a “Hello, World!” 
-REST endpoint in a Docker container, orchestrated locally using Terraform and Ansible.
+## Prerequisites
+- Docker Desktop (Linux container mode)
+- Python 3.10+
+- Terraform
+- Ansible
+- JDK 17
+- Maven
+- Git (optional)
 
-•  Tools:
-  Terraform: Manages the Docker container as an infrastructure resource.
-  Ansible: Configures the local Docker environment and deploys the Java application container.
-  Docker: Runs the Java application in a container.
-  Java: A Spring Boot application providing a simple web endpoint.
-•  Environment: Your Windows machine, running Docker Desktop.
-•  Prerequisites:
-   Windows machine with the following installed:
-   Docker Desktop (running in Linux container mode)
-   Python (for Ansible)
-   Terraform
-   Ansible
-   Java Development Kit (JDK) 21 or later
-  Maven (for building the Java app)
-  Git (optional, for version control)
-  Basic familiarity with command-line operations.
-•  Key Notes:
-  Since this is a local project, we’ll use Terraform’s Docker provider instead of AWS.
-  Ansible will manage the local Docker setup, though its role is lighter in a local context.
-  The Java app will be a simple Spring Boot REST service.
+## Setup
+1. Clone the repository or create the project structure.
+2. Build the Java app: `cd java-app && mvn clean package`.
+3. Build the Docker image: `docker build -t hello-world:latest java-app`.
+4. Run Terraform: `cd terraform && terraform init && terraform apply`.
+5. Run Ansible: `cd ansible && ansible-playbook -i inventory playbook.yml`.
+
+## Access
+- Terraform container: `http://localhost:8080/hello`
+- Ansible container: `http://localhost:8081/hello`
+
+## Cleanup
+- Terraform: `cd terraform && terraform destroy`
+- Ansible: `docker stop hello-world-container-ansible && docker rm hello-world-container-ansible`
